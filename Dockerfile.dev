@@ -1,0 +1,20 @@
+# Base Image
+FROM node:alpine
+
+# Working directory
+WORKDIR /usr/src/app
+
+# COPY package.json
+COPY package.json ./
+
+# RUN
+RUN npm install
+
+# COPY ./
+COPY ./ ./
+
+# CMD (execute 'react')
+CMD ["npm", "run", "start"]
+
+# Docker hot-deployment (어떤 이유로 인하여 작동되지 않는듯... 아마 버전문제?)
+# ENV CHOKIDAR_USEPOLLING=true

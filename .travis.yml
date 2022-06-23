@@ -1,0 +1,22 @@
+# 관리자 권한 갖기
+sudo: required
+
+# 언어 선택
+language: generic
+
+# 도커 환경 구성
+services:
+  - docker
+
+# 인스톨 이전에 수행할 작업
+before_install:
+  - echo "start Creating an image with dockerfile"
+  - docker build -t koorung/docker-react-app -f Dockerfile.dev .
+
+# 실행할 스크립트(테스트)
+scripts:
+  - docker run -e CI=true koorung/docker-react-app npm run test -- --coverage
+
+# 테스트 성공 이후 수행할 작업
+after_success:
+  - echo "Test Success!"

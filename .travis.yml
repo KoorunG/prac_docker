@@ -1,5 +1,5 @@
-# 관리자 권한 갖기
-sudo: required
+# 관리자 권한 갖기 - 1. 이제 sudo로 권한을 굳이 안줘도 되는듯
+# sudo: required    
 
 # 언어 선택
 language: generic
@@ -13,8 +13,8 @@ before_install:
   - echo "start Creating an image with dockerfile"
   - docker build -t koorung/docker-react-app -f Dockerfile.dev .
 
-# 실행할 스크립트(테스트)
-scripts:
+# 실행할 스크립트(테스트) - 2. scripts가 아닌 script를 써야 하는듯
+script:
   - docker run -e CI=true koorung/docker-react-app npm run test -- --coverage
 
 # 테스트 성공 이후 수행할 작업
